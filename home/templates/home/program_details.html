@@ -1,0 +1,148 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block title %}{{ program.name }}{% endblock %}
+
+
+{% block content %}
+	<!-- bradcam_area_start  -->
+	<div class="bradcam_area breadcam_bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-xl-12">
+					<div class="bradcam_text">
+						<h3>{{ program.name }}</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- bradcam_area_end  -->
+
+
+	<!-- Start Align Area -->
+	<div class="whole-wrap">
+		<div class="container box_1170">
+			{% cycle '1' '2' as count silent %}
+			{% for block in program.details.all %}
+				<div class="{% cycle 'section-top-border' 'section-top-border text-right' %}">
+					<h3 class="mb-30">{{ block.title }}</h3>
+					<div class="row">
+						{% if count == '1' %}
+							<div class="col-md-3">
+								{% if block.image %}
+									<img src="{{ block.image.url }}" alt="" class="img-fluid">
+								{% endif %}
+							</div>
+							<div class="col-md-9 mt-sm-20">
+								<p>{{ block.detail|linebreaks }}</p>
+							</div>
+						{% else %}
+							<div class="col-md-9">
+								<div style="text-align:left"><p class="text-right">{{ block.detail|linebreaks }}</p></div>
+							</div>
+							<div class="col-md-3">
+								{% if block.image %}
+									<img src="{{ block.image.url }}" alt="" class="img-fluid">
+								{% endif %}
+							</div>
+						{% endif %}
+						{% cycle count %}
+					</div>
+				</div>
+			{% endfor %}
+
+
+			<div class="section-top-border">
+				<h3 class="mb-30">Definition</h3>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="single-defination">
+							<h4 class="mb-20">Definition 01</h4>
+							<p>Recently, the US Federal government banned online casinos from operating in America by
+								making it illegal to
+								transfer money to them through any US bank or payment system. As a result of this law,
+								most of the popular
+								online casino networks</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="single-defination">
+							<h4 class="mb-20">Definition 02</h4>
+							<p>Recently, the US Federal government banned online casinos from operating in America by
+								making it illegal to
+								transfer money to them through any US bank or payment system. As a result of this law,
+								most of the popular
+								online casino networks</p>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="single-defination">
+							<h4 class="mb-20">Definition 03</h4>
+							<p>Recently, the US Federal government banned online casinos from operating in America by
+								making it illegal to
+								transfer money to them through any US bank or payment system. As a result of this law,
+								most of the popular
+								online casino networks</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="section-top-border">
+				<h3 class="mb-30">Block Quotes</h3>
+				<div class="row">
+					<div class="col-lg-12">
+						<blockquote class="generic-blockquote">
+							“Recently, the US Federal government banned online casinos from operating in America by
+							making it illegal to
+							transfer money to them through any US bank or payment system. As a result of this law, most
+							of the popular
+							online casino networks such as Party Gaming and PlayTech left the United States. Overnight,
+							online casino
+							players found themselves being chased by the Federal government. But, after a fortnight, the
+							online casino
+							industry came up with a solution and new online casinos started taking root. These began to
+							operate under a
+							different business umbrella, and by doing that, rendered the transfer of money to and from
+							them legal. A major
+							part of this was enlisting electronic banking systems that would accept this new
+							clarification and start doing
+							business with me. Listed in this article are the electronic banking”
+						</blockquote>
+					</div>
+				</div>
+			</div>
+
+			<div class="section-top-border">
+				<h3>Image Gallery</h3>
+				<div class="row gallery-item">
+					{% for gallery in program.gallery.all %}
+					<div class="col-md-4">
+						<a href="{{ gallery.image.url }}" class="img-pop-up">
+							<div class="single-gallery-image" style="background: url({{ gallery.image.url }});"></div>
+						</a>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Align Area -->
+{% endblock %}
+
+{% block script %}
+    <script>
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+        });
+        $('#datepicker2').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+             rightIcon: '<span class="fa fa-caret-down"></span>'
+         }
+
+        });
+    </script>
+{% endblock %}
